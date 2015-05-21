@@ -2,20 +2,20 @@ package main
  
 import(
     . "snipe"
-    . "fmt"
+    "fmt"
 )
 
 func main(){
-    Println("go")
+    fmt.Println("go")
     ptr:=new(Snipe)
-    ptr.Init("127.0.0.1:80808")
+    ptr.Init("mysql","test:test@tcp(localhost:3306)/test?charset=utf8")
     if ptr==nil{
-        Println("error")
+        fmt.Println("error")
     }
     var x uint
     for{
-        Scanf("%d",&x)
-  //      Println(x)
+        fmt.Scanf("%d",&x)
+  //      fmt.Println(x)
         if(x==9){break}
         ptr.Set_Thread_Pool(x)
     }

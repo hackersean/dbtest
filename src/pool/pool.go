@@ -1,6 +1,6 @@
 package pool
 import(
-    . "fmt"
+    "fmt"
 )
 
 //接口，可以用于传入不同类型的结构体。
@@ -36,6 +36,7 @@ func (this *Pool) Set(thread_count_want uint){
 }
 
 func (this *Pool) thread(id uint){
+    fmt.Println(id)
     //建立数据库连接
     this.task.Construct()
     for{
@@ -49,8 +50,7 @@ func (this *Pool) thread(id uint){
 
     }
     //数据库链接断开
-    this.task.Destory()
-    
+    this.task.Destory()    
 }
 
 func NewPool(thread_count_want uint)(*Pool){
@@ -62,6 +62,6 @@ func NewPool(thread_count_want uint)(*Pool){
 
 func init(){
     
-    Println("pool")
+    fmt.Println("pool")
 }
 
