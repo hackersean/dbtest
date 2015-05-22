@@ -35,6 +35,10 @@ func (this *Pool) Set(thread_count_want uint){
     this.Run(thread_count_want)
 }
 
+func (this *Pool) Show() uint{
+    return this.thread_count_now
+}
+
 func (this *Pool) thread(id uint){
     fmt.Println(id)
     //建立数据库连接

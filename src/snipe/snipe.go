@@ -21,13 +21,18 @@ func (this *Snipe) Init(dbtype string,target string){
     
 
     this.fire_pool=new(Pool)
-    this.fire_pool.Init(NewDBsql(this.dblink.DBptr()))
+    this.fire_pool.Init(NewDBpresql(this.dblink.DBptr()))
 }
 
 //设置线程池大小
 func (this *Snipe) Set_Thread_Pool(thread_count_want uint){
     this.fire_pool.Run(thread_count_want)
     return
+}
+
+//读取线程池大小
+func (this *Snipe) Show_Thread_Count() uint{
+    return this.fire_pool.Show()
 }
 
 
