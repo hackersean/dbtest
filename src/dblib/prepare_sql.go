@@ -10,7 +10,6 @@ import(
 type DBPresql struct{
     DBsql      //匿名字段
     stmt *sql.Stmt
-
 }
 
 //-------------------------
@@ -20,7 +19,7 @@ type DBPresql struct{
 func (this *DBPresql) Construct() int{
     fmt.Println("prepare Construct")
     var err error
-    this.stmt,err=this.db.Prepare("SELECT id FROM mytest WHERE name=?" ) // ? = 占位符  
+    this.stmt,err=this.db.Prepare(*this.sql) // ? = 占位符  
     if err != nil {  
         panic(err.Error())  
     }  
@@ -29,12 +28,12 @@ func (this *DBPresql) Construct() int{
 func (this *DBPresql) Run() int{
     //操作数据库   
     var tmp *sql.Rows
-    tmp, err := this.stmt.Query("teset") // 执行插入  
+    tmp, err := this.stmt.Query("1") // 执行插入  
     if err != nil {  
         panic(err.Error())  
     }  
     for tmp.Next(){
-        var stmp int
+        var stmp string
         tmp.Scan(&stmp)
         fmt.Println(stmp)
     }
@@ -46,5 +45,11 @@ func (this *DBPresql) Run() int{
 func (this *DBPresql) Destory() int{
     fmt.Println("prepare Destory")
     this.stmt.Close() // main结束是关闭  
+    return 0
+}
+
+func (this *DBPresql) init(db *sql.DB,sql *string) int{
+    this.db=db
+    this.sql=sql
     return 0
 }

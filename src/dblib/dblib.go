@@ -57,12 +57,15 @@ func (this *DBlink) Destory() int{
 //-------------------------
 //函数库
 //----------------------------
-func NewDBpresql(dbptr *sql.DB) *DBPresql{
-    return &DBPresql{DBsql{dbptr},nil}
+func NewDBpresql(dbptr *sql.DB,sql *string) *DBPresql{
+    dbsql:= new(DBPresql)
+    dbsql.init(dbptr,sql)
+    return dbsql
 }
-
-func NewDBsql(dbptr *sql.DB) *DBsql{
-    return &DBsql{dbptr}
+func NewDBsql(dbptr *sql.DB,sql *string) *DBsql{
+    dbsql:=new(DBsql)
+    dbsql.init(dbptr,sql)
+    return dbsql
 }
 func init(){
     fmt.Println("dblib")

@@ -10,6 +10,7 @@ import(
 //负责数据库sql拼凑
 type DBsql struct{
     db *sql.DB
+    sql *string
 }
 
 //--------------------------------
@@ -40,5 +41,11 @@ func (this *DBsql) Run() int{
 }
 func (this *DBsql) Destory() int{
     fmt.Println("Destory")
+    return 0
+}
+
+func (this *DBsql) init(db *sql.DB,sql *string) int{
+    this.db=db
+    this.sql=sql
     return 0
 }

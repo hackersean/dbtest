@@ -17,7 +17,7 @@ func main(){
         fmt.Scanf("%d",&x)
   //      fmt.Println(x)
         if(x==9){break}
-        ptr.Set_Thread_Pool(x)
+        ptr.Set_Thread_Pool(0,x)
     }
     return 
 }
