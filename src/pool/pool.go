@@ -3,6 +3,7 @@ import(
     "fmt"
 )
 
+
 //接口，可以用于传入不同类型的结构体。
 type Tasker interface {
     Construct() int

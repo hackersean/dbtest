@@ -17,10 +17,16 @@ type Snipe struct{
 }
 
 func (this *Snipe) Init(dbtype string,target string){
-    paradesc:=[]string{"1","helloworld"}
+    paradesc:=[]string{"1","helloworld","aaaa","asdfasdf","hehehe"}
     var prod *ParaProd=new(ParaProd)
-    prod.Init(paradesc)
-
+    channel:=prod.Init(paradesc)
+    go prod.Run()
+    
+    x:=<-channel
+    for ptr:=range(*x){
+       fmt.Println(*(*x)[ptr])
+    }
+    
 
     this.target=target
     

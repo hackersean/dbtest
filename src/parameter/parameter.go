@@ -1,4 +1,7 @@
 package parameter
+import(
+  //  "fmt"
+)
 
 //参数结构体
 //静态参数，用户的指定参数，无需随机什么的。
@@ -7,12 +10,16 @@ type StaPara struct{
 }
 
 func (this *StaPara) init(desc *string) int{
+
     this.desc=desc
+    
     return 0
 }
 
-func (this *StaPara) Get() *string{
-    return this.desc
+func (this *StaPara) Get(aim *string) int{
+    *aim=*this.desc
+   
+    return 0
 }
 
 //随机数字参数
@@ -22,6 +29,6 @@ type IntRandPara struct{
 
 }
 
-func (this *IntRandPara) Get() *string{
-     return nil
+func (this *IntRandPara) Get(aim *string) int{
+     return 0
 }
