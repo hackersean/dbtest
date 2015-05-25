@@ -2,6 +2,7 @@ package dblib
 import(
     "fmt"
  //   "runtime"
+//    . "channels"
     "database/sql"
     _ "github.com/go-sql-driver/mysql"
 )
@@ -27,7 +28,17 @@ func (this *DBPresql) Construct() int{
 }
 func (this *DBPresql) Run() int{
     //操作数据库   
+    
+    paras_ptr:=this.ch.Pull().(*[]*[]string)
+    /*
+    for index:=range(*paras_ptr){
+        fmt.Println((*paras_ptr)[index])
+    }
+    */
+
+    //这里需要加循环
     var tmp *sql.Rows
+    
     tmp, err := this.stmt.Query("1") // 执行插入  
     if err != nil {  
         panic(err.Error())  
@@ -47,9 +58,10 @@ func (this *DBPresql) Destory() int{
     this.stmt.Close() // main结束是关闭  
     return 0
 }
-
+/*
 func (this *DBPresql) init(db *sql.DB,sql *string) int{
     this.db=db
     this.sql=sql
     return 0
 }
+*/

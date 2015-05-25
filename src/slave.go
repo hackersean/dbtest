@@ -12,6 +12,7 @@ func main(){
     if ptr==nil{
         fmt.Println("error")
     }
+    ptr.Add_Arms()
     var x uint
     for{
         fmt.Scanf("%d",&x)

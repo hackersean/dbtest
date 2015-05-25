@@ -2,6 +2,7 @@ package dblib
 import(
     "fmt"
  //   "runtime"
+    . "channels"
     "database/sql"
     _ "github.com/go-sql-driver/mysql"
 )
@@ -11,6 +12,7 @@ import(
 type DBsql struct{
     db *sql.DB
     sql *string
+    ch *Channel
 }
 
 //--------------------------------
@@ -44,8 +46,9 @@ func (this *DBsql) Destory() int{
     return 0
 }
 
-func (this *DBsql) init(db *sql.DB,sql *string) int{
+func (this *DBsql) init(db *sql.DB,sql *string,ch *Channel) int{
     this.db=db
     this.sql=sql
+    this.ch=ch
     return 0
 }

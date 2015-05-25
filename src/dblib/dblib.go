@@ -2,6 +2,7 @@ package dblib
 import(
     "fmt"
  //   "runtime"
+    . "channels"
     "database/sql"
     _ "github.com/go-sql-driver/mysql"
 )
@@ -57,14 +58,14 @@ func (this *DBlink) Destory() int{
 //-------------------------
 //函数库
 //----------------------------
-func NewDBpresql(dbptr *sql.DB,sql *string) *DBPresql{
+func NewDBpresql(dbptr *sql.DB,sql *string,ch *Channel) *DBPresql{
     dbsql:= new(DBPresql)
-    dbsql.init(dbptr,sql)
+    dbsql.init(dbptr,sql,ch)
     return dbsql
 }
-func NewDBsql(dbptr *sql.DB,sql *string) *DBsql{
+func NewDBsql(dbptr *sql.DB,sql *string,ch *Channel) *DBsql{
     dbsql:=new(DBsql)
-    dbsql.init(dbptr,sql)
+    dbsql.init(dbptr,sql,ch)
     return dbsql
 }
 func init(){
