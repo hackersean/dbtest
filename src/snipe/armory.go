@@ -3,7 +3,7 @@ import(
     . "pool"
     . "parameter"
     . "dblib"
-    "fmt"
+//"fmt"
 )   
 
 
@@ -16,13 +16,13 @@ type Armory struct{
 
 func (this *Armory) Init(dblink *DBlink) int{
     //弹药生产
-    paradesc:=[]string{"1"}
+    paradesc:=[]string{"teset","6"}
     var prod *ParaProd=new(ParaProd)
     ch:=prod.Init(paradesc)
 
     this.ammo_prod.Init(prod)
     //火力点
-    tmp:="SELECT name FROM mytest WHERE id=?"
+    tmp:="SELECT id FROM mytest WHERE name=? AND id=?"
     
     this.fire_point.Init(NewDBpresql(dblink.DBptr(),&tmp,ch))
     return 0

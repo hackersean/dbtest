@@ -35,21 +35,28 @@ func (this *DBPresql) Run() int{
         fmt.Println((*paras_ptr)[index])
     }
     */
-
-    //这里需要加循环
     var tmp *sql.Rows
-    
-    tmp, err := this.stmt.Query("1") // 执行插入  
-    if err != nil {  
-        panic(err.Error())  
-    }  
-    for tmp.Next(){
-        var stmp string
-        tmp.Scan(&stmp)
-        fmt.Println(stmp)
+    var err error
+    for index:=range(*paras_ptr){
+        //--------------后面再看这块需不需要优化------------------------
+        var str_array []string=(*(*paras_ptr)[index])
+        interface_array:=make([]interface{}, len(str_array))
+        for index:=range(str_array){
+            interface_array[index]=interface{}(str_array[index])
+        }
+ //       fmt.Println(str_array)
+  //      nums := []string{"teset"}
+        tmp,err=this.stmt.Query(interface_array...) // 执行插入  
+        if err != nil {  
+            panic(err.Error())  
+        }  
+        for tmp.Next(){
+            var stmp string
+            tmp.Scan(&stmp)
+            fmt.Println(stmp)
+        }
     }
-   
-    fmt.Println("")
+//    fmt.Println("")
     return 0
 }
 
